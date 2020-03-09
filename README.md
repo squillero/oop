@@ -1,7 +1,7 @@
 Object Oriented Programming
 ===========================
 
-This repo contains old exams, notes, and all the code fragments developed during my lectures of [*Object Oriented Programming*](https://didattica.polito.it/pls/portal30/gap.pkg_guide.viewGap?p_cod_ins=04JEYLM) at [Politecnico di Torino](https://www.polito.it/?lang=en).
+This repo contains notes and code fragments developed during my lectures of [*Object Oriented Programming*](https://didattica.polito.it/pls/portal30/gap.pkg_guide.viewGap?p_cod_ins=04JEYLM) at [Politecnico di Torino](https://www.polito.it/?lang=en).
 
 ### Quick links
 
