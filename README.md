@@ -5,6 +5,7 @@ This repo contains notes and code fragments developed during my lectures of [*Ob
 
 ### Quick links
 
+* [Telegram](https://en.wikipedia.org/wiki/Telegram_%28software%29) support group: [https://t.me/squillero_oop](https://t.me/squillero_oop)
 * Official pages on [didattica.polito.it](https://didattica.polito.it/pls/portal30/gap.pkg_guide.viewGap?p_cod_ins=04JEYLM) 
 * English slides [oop.polito.it/material/Squillero/](https://oop.polito.it/material/Squillero/)
 * Additional material from [oop.polito.it/](https://oop.polito.it/)
