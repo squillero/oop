@@ -21,10 +21,10 @@ public class TestApplication {
 		Course dep = polito.createCourse("01TXH", "Data Ethics and Protection");
 		polito.printCourses();
 		
-		Student alice = polito.createStudent("123456", "Alice");
-		Student bob = polito.createStudent("654321", "Bob");
-		Student carla = polito.createStudent("162534", "Carla");
-		Student david = polito.createStudent("615243", "David");
+		Student alice = polito.addStudent("123456", "Alice");
+		Student bob = polito.addStudent("654321", "Bob");
+		Student carla = polito.addStudent("162534", "Carla");
+		Student david = polito.addStudent("615243", "David");
 		polito.printStudents();
 		
 		polito.enroll(oop, alice);
