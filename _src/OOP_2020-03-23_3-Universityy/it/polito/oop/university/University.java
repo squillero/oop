@@ -22,6 +22,10 @@ public class University {
 		this.name = name;
 	}
 
+	public String getName() {
+		return this.name;
+	}
+
 	public Course createCourse(String code, String title) {
 		Course course = new Course(code, title);
 		courseArray[numCourses++] = course;
@@ -36,16 +40,14 @@ public class University {
 
 	public void printCourses() {
 		for (int i = 0; i < numCourses; ++i)
-			System.out.println(i + 1 + ": " + courseArray[i].getTitle() + 
-					" (" + courseArray[i].getCode() + ")");
+			System.out.println(i + 1 + ": " + courseArray[i].getTitle() + " (" + courseArray[i].getCode() + ")");
 	}
 
 	public void printStudents() {
 		for (int i = 0; i < numStudents; ++i)
-			System.out.println(i + 1 + ": " + studentArray[i].getName() + 
-					" (" + studentArray[i].getId() + ")");
+			System.out.println(i + 1 + ": " + studentArray[i].getName() + " (" + studentArray[i].getId() + ")");
 	}
-	
+
 	public void enroll(Course course, Student student) {
 		course.addStudent(student);
 	}
