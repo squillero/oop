@@ -11,24 +11,24 @@
 
 package it.polito.oop.university;
 
-public class Person {
-	private String id;
+abstract class Person {
+    private String id;
     private String name;
-	
-	Person(String id, String name) {
-		this.id = id;
-		this.name = name;
-	}
 
-	public String getId() {
-		return id;
-	}
+    Person(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getId() {
+        return id;
+    }
 
-	void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
+
+    void setName(String name) {
+        this.name = name;
+    }
 }
