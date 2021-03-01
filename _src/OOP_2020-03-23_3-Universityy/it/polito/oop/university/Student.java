@@ -11,26 +11,8 @@
 
 package it.polito.oop.university;
 
-public class Student {
-	private String id;
-	private String name;
-	
+public class Student extends Person {
 	Student(String id, String name) {
-		this.id = id;
-		this.name = name;
+		super(id, name);
 	}
-
-	public String getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	void setName(String name) {
-		this.name = name;
-	}
-	
-	
 }

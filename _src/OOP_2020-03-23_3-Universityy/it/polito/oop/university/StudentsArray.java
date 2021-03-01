@@ -11,31 +11,22 @@
 
 package it.polito.oop.university;
 
-public class University extends StudentsArray {
-	private String name;
-	private Course[] courseArray = new Course[100];
-	private int numCourses = 0; // technically useless (0 is the default)
+abstract class StudentsArray {
+	private Student[] enrolledStudents = new Student[300];
+	private int numStudents = 0;
 
-	public University(String name) {
-		this.name = name;
+	public void addStudent(Student student) {
+		this.enrolledStudents[this.numStudents++] = student;
 	}
 
-	public String getName() {
-		return this.name;
+	public Student addStudent(String id, String name) {
+		Student student = new Student(id, name);
+		this.addStudent(student);
+		return student;
 	}
 
-	public Course createCourse(String code, String title) {
-		Course course = new Course(code, title);
-		courseArray[numCourses++] = course;
-		return course;
-	}
-
-	public void printCourses() {
-		for (int i = 0; i < numCourses; ++i)
-			System.out.println(i + 1 + ": " + courseArray[i].getTitle() + " (" + courseArray[i].getCode() + ")");
-	}
-
-	public void enroll(Course course, Student student) {
-		course.addStudent(student);
+	public void printStudents() {
+		for (int i = 0; i < numStudents; ++i)
+			System.out.println(i + 1 + ": " + enrolledStudents[i].getName() + " (" + enrolledStudents[i].getId() + ")");
 	}
 }

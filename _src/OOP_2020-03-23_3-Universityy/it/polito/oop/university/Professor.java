@@ -11,6 +11,10 @@
 
 package it.polito.oop.university;
 
-public class Professor {
+public class Professor extends Person {
+
+    Professor(String id, String name) {
+        super(id, name);
+    }
 
 }
