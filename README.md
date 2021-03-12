@@ -1,7 +1,7 @@
 Object Oriented Programming
 ===========================
 
-This repo contains notes and the code fragments developed during my lectures of [*Object Oriented Programming*](https://didattica.polito.it/pls/portal30/gap.pkg_guide.viewGap?p_cod_ins=04JEYLM) at [Politecnico di Torino](https://www.polito.it/?lang=en). The *official* slides are in the directory [_slides](_slides)) Contributions , while students' contributions are in [_contrib](_contrib)).
+This repo contains notes and the code fragments developed during my lectures of [*Object Oriented Programming*](https://didattica.polito.it/pls/portal30/gap.pkg_guide.viewGap?p_cod_ins=04JEYLM) at [Politecnico di Torino](https://www.polito.it/?lang=en). The *official* slides are in the directory [_slides](_slides), while students' contributions, [_contrib](_contrib).
 
 ### Quick links
 
