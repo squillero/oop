@@ -10,5 +10,5 @@ This repo contains notes and the code fragments developed during my lectures of 
 * English slides on [https://oop.polito.it/material/Squillero/](https://oop.polito.it/material/Squillero/)
 * Additional material from [oop.polito.it/](https://oop.polito.it/)
 
-> [![CC BY-NC-SA 4.0](https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-sa/4.0/)  
-> Unless expressly noted in the individual files, all material in this site is distributed under the *Creative Commons Attribution Non-Commercial Share-Alike* license ([CC BY-NC-SA 4.0](https://tldrlegal.com/license/creative-commons-attribution-noncommercial-sharealike-4.0-international-%28cc-by-nc-sa-4.0%29)).
+> [![CC BY-NC-SA 4.0](https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png)](https://creativecommons.org/licenses/by-nc-sa/4.0/) Unless expressly noted in the individual files, all material in this site is distributed under the *Creative Commons Attribution Non-Commercial Share-Alike* license ([CC BY-NC-SA 4.0](https://tldrlegal.com/license/creative-commons-attribution-noncommercial-sharealike-4.0-international-%28cc-by-nc-sa-4.0%29)).
+
