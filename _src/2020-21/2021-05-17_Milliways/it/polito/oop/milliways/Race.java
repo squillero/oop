@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class Race {
+public class Race implements Comparable<Race> {
 	private String name;
 	private HashSet<String> requirements;
 
@@ -38,4 +38,13 @@ public class Race {
 		return requirements.stream().sorted().collect(Collectors.toList());
 	}
 
+	@Override
+	public String toString() {
+		return name;
+	}
+
+	@Override
+	public int compareTo(Race o) {
+		return name.compareTo(o.name);
+	}
 }

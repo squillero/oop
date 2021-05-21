@@ -21,9 +21,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.Comparator;
 
-public class Hall {
+public class Hall implements Comparable<Hall> {
 	private int id;
 	private Set<String> facilities;
+	private List<Party> seatedParties;
 	
 	static long differentChars(String string) {
 		return Stream.of(string.split("")).distinct().collect(Collectors.counting());
@@ -32,6 +33,7 @@ public class Hall {
 	Hall(int id) {
 		this.id = id;
 		this.facilities = new TreeSet<>();
+		this.seatedParties = new ArrayList<>();
 	}
 
 	public int getId() {
@@ -59,9 +61,26 @@ public class Hall {
 		crazy.addAll(facilities);
 		return new ArrayList<>(crazy);
 	}
+	
+	void seat(Party party) {
+		seatedParties.add(party);
+	}
+	
+	Stream<Party> streamSeatedParties() {
+		return seatedParties.stream();
+	}
+
+	List<Party> getSeatedParties() {
+		return new ArrayList<>(seatedParties);
+	}
 
 	@Override
 	public String toString() {
 		return "Hall [id=" + id + ", facilities=" + facilities + "]";
+	}
+
+	@Override
+	public int compareTo(Hall o) {
+		return Integer.compare(id, o.id);
 	}
 }

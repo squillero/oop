@@ -13,6 +13,7 @@ package it.polito.oop.milliways;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -30,12 +31,21 @@ public class Party {
 		companions.put(race, oldNumber + num);
 	}
 
-	public int getNum() {
+	int getNum() {
 		return companions.values().stream().collect(Collectors.summingInt(Integer::intValue));
 	}
 
+	Map<Race, Integer> getCompanions() {
+		return new TreeMap<>(companions);
+	}
+	
 	public List<String> getRequirements() {
 		return companions.keySet().stream().flatMap(r -> r.getRequirements().stream()).sorted().distinct()
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public String toString() {
+		return "Party: " + companions;
 	}
 }
