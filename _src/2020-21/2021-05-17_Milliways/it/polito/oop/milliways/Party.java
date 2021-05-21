@@ -10,11 +10,9 @@
 
 package it.polito.oop.milliways;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeSet;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -37,13 +35,7 @@ public class Party {
 	}
 
 	public List<String> getRequirements() {
-		TreeSet<String> requirements = new TreeSet<>();
-		for(Race r: companions.keySet())
-			requirements.addAll(r.getRequirements());
-		return new ArrayList<String>(requirements);
-		
-		
-		//return companions.keySet().stream().flatMap(r -> r.getRequirements().stream()).sorted().distinct()
-		//		.collect(Collectors.toList());
+		return companions.keySet().stream().flatMap(r -> r.getRequirements().stream()).sorted().distinct()
+				.collect(Collectors.toList());
 	}
 }

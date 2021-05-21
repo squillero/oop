@@ -10,6 +10,8 @@
 
 package it.polito.oop.milliways;
 
+import java.util.List;
+
 public class Restaurant {
 	public Race defineRace(String name) throws MilliwaysException {
 		if(Directory.getInstance().getRace(name) != null)
@@ -21,5 +23,30 @@ public class Restaurant {
 
 	public Party createParty() {
 	    return new Party();
+	}
+	
+	public Hall defineHall(int id) throws MilliwaysException {
+		if(Directory.getInstance().getHall(id) != null)
+			throw new MilliwaysException("Duplicated Hall: '" + id+ "'");		
+		Hall hall = new Hall(id);
+		Directory.getInstance().addHall(hall);
+		return hall;
+	}
+	
+	public List<Hall> getHallList() {
+		return Directory.getInstance().getHallList();
+	}
+	
+	public Hall seat(Party party, Hall hall) throws MilliwaysException {
+		if(!hall.isSuitable(party))
+			throw new MilliwaysException("Can't seat party!");
+		return hall;
+	}
+
+	public Hall seat(Party party) throws MilliwaysException {
+		for(Hall h: getHallList())
+			if(h.isSuitable(party))
+				return h;
+		throw new MilliwaysException("Can't seat party!");
 	}
 }
