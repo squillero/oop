@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Rent a car</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href=".css.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Rent a car</h1>
+</header>
+<!--
+> To generate html and pdf use
+> ```bash
+> $ pandoc -s -f markdown+Smart requirements.md -c .css.css -o requirements.html
+> $ pandoc -s -f markdown+Smart requirements.md -o requirements.pdf
+> ```
+-->
+<p>Il programma simula un’agenzia di autonoleggio. L’agenzia offre auto e furgoni a noleggio ai propri clienti (utenti). Ogni prenotazione di noleggio è per una categoria di veicoli e porta un certo numero di punti ai clienti.</p>
+<p>Tutte le classi devono essere in package <b>rentacar</b>. La classe principale è <b>Agenzia</b>. La classe <b>TestApp</b> nel pacchetto <b>example</b> contiene un esempio. Le eccezioni sono lanciate utilizzando la classe <b>AgencyException</b>.</p>
+<p>E’ possibile accedere alla <a href="http://softeng.polito.it/courses/docs/api/index.html">documentazione Java API</a>.</p>
+<h2 id="r1-categorie-e-veicoli">R1: Categorie e veicoli</h2>
+<p>Il metodo <b>definePoints(double... points)</b> definisce i punti che vengono assegnati ai clienti per ciascuna delle categorie di veicoli. Il numero di categorie deve essere uguale al numero di punti forniti come argomenti; le categorie sono elencate in ordine alfabetico (A, B, C, ecc.) I punti sono dati in modo ascendente (più punti sono assegnati alla categoria B che alla categoria A, e così via); il metodo dovrebbe lanciare un’eccezione se i punti non sono forniti in ordine ascendente.</p>
+<p>Il metodo <b>getPointsOfCategory(char category)</b> restituisce il numero di punti per la categoria data. Se la categoria non esiste, il metodo lancia un’eccezione.</p>
+<p>A qualsiasi veicolo, sia esso un’auto o un furgone, viene assegnato un numero di identificazione interno, in modo progressivo, a partire da 0.</p>
+<p>Il metodo <b>addCar(String manufacturer, String model, int year, String gear, String color, String category, char category, int seats)</b> aggiunge un’auto, con il suo produttore, modello, anno di produzione, tipo di cambio, colore, categoria di noleggio e numero di posti a sedere. Restituisce il numero identificativo dell’auto. Viene lanciata un’eccezione se la categoria indicata non è stata precedentemente definita.</p>
+<p>Il metodo <b>addVan(String manufacturer, String model, int year, String gear, String color, String category, char category, int seats, int limit)</b> aggiunge un furgone, con il suo produttore, modello, anno di produzione, tipo di cambio, colore, categoria di noleggio, numero di posti a sedere e il suo limite di peso massimo. Restituisce il numero identificativo del furgone. Viene lanciata un’eccezione se la categoria indicata non è stata precedentemente definita.</p>
+<p>Il metodo <b>getVehiclesOfAManufacturer(String manufacturer)</b> genera un elenco di Stringhe contenente le informazioni per i veicoli di un determinato costruttore nel seguente formato <b>[model]:[year]:[color]</b>. L’elenco è ordinato in modo ascendente in base all’ID del veicolo. Un elenco vuoto viene restituito se per un determinato costruttore non è stato definito alcun veicolo.</p>
+<h2 id="r2-utenti">R2: Utenti</h2>
+<p>Il metodo <b>registerUser(String name, String city)</b> aggiunge un utente con il suo nome e la sua città. Restituisce il numero identificativo univoco che viene assegnato a ciascuno degli utenti, progressivamente, a partire da 0. Il metodo lancia un’eccezione se è già stato definito un utente con lo stesso nome e la stessa città.</p>
+<p>Il metodo <b>getUserInfo()</b> restituisce una mappa che associa una città alla lista degli utenti che vivono in quella città. I nomi delle città sono ordinati in ordine alfabetico, mentre i nomi degli utenti nella lista sono ordinati in ordine alfabetico invertito.</p>
+<p>Il metodo <b>countUsers()</b> restituisce il numero di utenti registrati.</p>
+<h2 id="r3-prenotazioni">R3: Prenotazioni</h2>
+<p>Il metodo <b>makeReservation(int uid, char category, int seats, int duration)</b> aggiunge una prenotazione del veicolo, per l’id utente, la categoria del veicolo, il numero minimo di posti richiesto e un numero di giorni di noleggio. Se un utente con il dato id non esiste, viene lanciata un’eccezione. Se la categoria non esiste, viene lanciata un’eccezione. La prenotazione viene effettuata per il primo veicolo che soddisfa i criteri, appartenente alla categoria desiderata e con un numero di posti superiore o uguale a quello indicato. Se tale veicolo esiste, viene immediatamente impostato su occupato e il metodo restituisce l’id univoco di quel veicolo. Se più veicoli soddisfano tali criteri, viene preso quello che è stato registrato per primo. D’altra parte, se tale veicolo non è disponibile, non viene effettuata alcuna prenotazione e il metodo restituisce la costante <b>NO_VEHICLE</b>. Per ogni prenotazione riuscita, l’utente riceve un numero di punti associati alla categoria del veicolo noleggiato. Nota: ad un utente possono essere associati più di un noleggio.</p>
+<p>Il metodo <b>getUserNamesForTakenCars(char category)</b> produce un elenco di nomi utente ordinati in ordine alfabetico per le auto occupate appartenenti alla categoria data. Se non ci sono auto occupate per la categoria data, viene restituita una lista vuota.</p>
+<p>Il metodo <b>getAvailableVehicles(int seats)</b> produce un elenco di Stringhe con informazioni sul veicolo, di quei veicoli che sono ancora disponibili e che hanno un numero di posti a sedere superiore o uguale a quello dato. La lista è ordinata in ordine alfabetico in base alla categoria del veicolo e poi si basa sull’id del veicolo in modo ascendente. Le stringhe sono nel seguente formato <b>### [category]:[manufacturer]:[model]</b>, dove <b>###</b> corrisponde all’id del veicolo (stampato su 3 caratteri). Se non ci sono veicoli che soddisfano tali condizioni, viene restituita una lista vuota.</p>
+<h2 id="r4-valutazioni">R4: Valutazioni</h2>
+<p>Il metodo <b>getUsersPerPoints()</b> restituisce una mappa che associa il numero di punti con i nomi degli utenti che hanno quel numero di punti. Il numero di punti per un utente è uguale alla somma dei punti per tutte le prenotazioni effettuate dall’utente. Gli utenti con zero punti vengono scartati. I punti sono ordinati in modo decrescente.</p>
+<p>Il metodo <b>evaluateUsers()</b> restituisce una mappa che associa l’id e il nome dell’utente (in formato <b>[id]: [name]</b>) al numero medio di giorni di noleggio per quell’utente. La mappa è ordinata in base al numero medio di giorni di affitto in ordine decrescente e poi in base ai nomi utente in ordine alfabetico.</p>
+<h2 id="r5-statistiche">R5: Statistiche</h2>
+<p>Il metodo <b>getCarInfoForYears()</b> restituisce una mappa che associa un anno alla lista delle auto prodotte in quell’anno. Gli anni sono ordinati in ordine decrescente. Ogni auto nella lista è rappresentata nel seguente modo <b>[manufacturer]:[model]:[color]</b>.</p>
+<p>Il metodo <b>getCategoriesForVehicleNumber()</b> restituisce una mappa che associa il numero di veicoli con le categorie di quei veicoli. Il numero di veicoli è ordinato in modo ascendente, mentre le categorie sono ordinate in ordine alfabetico. Devono essere considerate anche le categorie con 0 veicoli.</p>
+</body>
+</html>

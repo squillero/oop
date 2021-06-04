@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Rent a car</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href=".css.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Rent a car</h1>
+</header>
+<!--
+> To generate html and pdf use
+> ```bash
+> $ pandoc -s -f markdown+Smart requirements.md -c .css.css -o requirements.html
+> $ pandoc -s -f markdown+Smart requirements.md -o requirements.pdf
+> ```
+-->
+<p>The program simulates a Rent a Car agency. The agency offers cars and vans for rent to their customers (users). Each rent reservation is for a vehicle category and it brings certain amount of points to the customers.</p>
+<p>All the classes have to be in <b>rentacar</b> package. The main class is <b>Agency</b>. The class <b>TestApp</b> in the package <b>example</b> contains an example. The exceptions are thrown using the class <b>AgencyException</b>.</p>
+<p>It is possible to access <a href="http://softeng.polito.it/courses/docs/api/index.html">Java API documentation</a>.</p>
+<h2 id="r1-categories-and-vehicles">R1: Categories and vehicles</h2>
+<p>The method <b>definePoints (double... points)</b> defines points that are being awarded to the customers for each of the vehicle categories. Number of categories is supposed to be equal to the number of points provided as arguments; categories are enumerated alphabetically (A, B, C, etc.) The points are given in an ascending manner (more points are assigned to category B than to category A, and so on); the method should launch an exception if the points are not provided in an ascending order.</p>
+<p>The method <b>getPointsOfCategory(char category)</b> returns the number of points for the given category. If the given category does not exist it throws an <b>AgencyException</b>.</p>
+<p>To any vehicle, regardless of whether it is a car or a van, an internal identification number is assigned, in a progressive manner, starting from 0.</p>
+<p>The method <b>addCar(String manufacturer, String model, int year, String gear, String color, char category, int seats)</b> adds a car, with its manufacturer, model, production year, gear type, color, rent category and number of seats. It returns the car’s id number. An exception is thrown if the indicated category has not been previously defined.</p>
+<p>The method <b>addVan(String manufacturer, String model, int year, String gear, String color, char category, int seats, int limit)</b> adds a van, with its manufacturer, model, production year, gear type, color, rent category, number of seats and its maximum weight limit. It returns the van’s id number. An exception is thrown if the indicated category has not been previously defined.</p>
+<p>The method <b>getVehiclesOfAManufacturer(String manufacturer)</b> generates a list of Strings containing the information for vehicles of the given manufacturer in the following format <b>[model]:[year]:[color]</b>. The list is sorted in an ascending manner based on the vehicle ID. An empty list is returned if for a given manufacturer no vehicle has been defined.</p>
+<h2 id="r2-users">R2: Users</h2>
+<p>The method <b>registerUser(String name, String city)</b> adds a user with its name and city. It returns the unique ID number that is assigned to each of the users, progressively, starting from 0. The method throws an exception if a user with both the same name and city has already been defined.</p>
+<p>The method <b>getUserInfo()</b> returns a map that associates a city with the list of users living in that city. The city names are sorted alphabetically while the user names in the list are sorted in a reversed alphabetical order.</p>
+<p>The method <b>countUsers()</b> returns a number of registered users.</p>
+<h2 id="r3-reservations">R3: Reservations</h2>
+<p>The method <b>makeReservation(int uid, char category, int seats, int duration)</b> adds a vehicle reservation, for the user id, vehicle category, minimum seat number that is required and a number of rent days. If a user with the given id does not exist, an exception is thrown. If the category does not exist, an exception is thrown. The reservation is made for the first vehicle that satisfies the criteria, belonging to the desired category and having the number of seats higher or equal to the given one. If such vehicle exists it is immediately set to occupied, and the method returns unique id of that vehicle. If more vehicles satisfy such criteria, the one that has been registered first is taken. On the other hand, if no such vehicle is available, no reservation is made, and the method returns <b>NO_VEHICLE</b> constant. For each successful reservation, the user is given a number of points associated to the category of the rented vehicle. Note: more than one rent can be associated with a user.</p>
+<p>The method <b>getUserNamesForTakenCars(char category)</b> produces a list of alphabetically sorted user names for the occupied cars belonging to the given category. If there are no occupied cars for the given category, an empty list is returned.</p>
+<p>The method <b>getAvailableVehicles(int seats)</b> produces a list of Strings with vehicle information, of those vehicles that are still available and have a number of seats higher or equal to the given one. The list is alphabetically sorted based on the vehicle category and then bases on the vehicle id in ascending manner. Strings are in the following format <b>### [category]:[manufacturer]:[model]</b>, where <b>###</b> corresponds to the vehicle Id (printed on 3 characters). If there are no vehicles satisfying such conditions, an empty list is returned.</p>
+<h2 id="r4-evaluations">R4: Evaluations</h2>
+<p>The method <b>getUsersPerPoints()</b> returns a map that associates number of points with names of the users having that number of points. Number of points for one user is equal to the sum of points for all of the reservations the user made. Users with zero points are discarded. The points are sorted in descending manner.</p>
+<p>The method <b>evaluateUsers()</b> returns a map that associates the user id and name (in format <b>[id]: [name]</b>) with the average number of rent days for that user. The map is sorted based on the average number of rent days in descending order and then based on the user names alphabetically.</p>
+<h2 id="r5-statistics">R5: Statistics</h2>
+<p>The method <b>getCarInfoForYears()</b> returns a map that associates a year with the list of cars being produced in that particular year. The years are sorted in descending order. Each car in the list is represented in the following manner <b>[manufacturer]:[model]:[color]</b>.</p>
+<p>The method <b>getCategoriesForVehicleNumber()</b> returns a map that associates the number of vehicles with the categories of those vehicles. The number of vehicles is sorted in ascending manner, while the categories are sorted alphabetically. The categories with 0 vehicles should also be considered.</p>
+</body>
+</html>

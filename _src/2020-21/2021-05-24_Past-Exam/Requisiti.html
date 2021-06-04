@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+
+
+
+<title>Palestre</title>
+<link href=".css.css" rel="stylesheet" type="text/css">
+<style>
+@media print {  /* adjusted to print the html to a single-page pdf */
+body {
+	font-size: 10pt;
+}
+</style>
+</head>
+<body>
+
+
+<h1>Fit</h1>	
+<p>
+Sviluppare un sistema che permetta di gestire il sistema delle prenotazioni per la catena di palestre Fit.
+
+Tutte le classi si trovano nel package <b>it.polito.oop.fit</b>. La classe principale
+&eacute; <b>Fit</b>. La classe <b>TestApp</b> nel package example contiene un esempio di utilizzo della classe.
+Le eccezioni sono lanciate mediante la classe <b>FitException</b>.
+<p>
+La documentazione JDK è accessibile all'URL <http://softeng.polito.it/courses/docs/api/index.html>. 
+
+<p>
+La <a href="https://oop.polito.it/api/index.html" target="api" target="_blank">JDK documentation</a>  
+si trova sul server locale.
+</p>
+
+<h2>R1: Palestre </h2> 
+La catena Fit ha diverse palestre, ognuna identificata dal suo nome. Per aggiungere una palestra si usa il metodo   
+<b>addGymn(String)</b>. Il metodo riceve come parametro il nome della palestra (es. MacFit Polito). Nel caso 
+la palestra esista già il metodo deve generare un'eccezione.
+E' possibile conoscere il numero di palestre registrate tramite il metodo <b>getNumGymns()</b>. 
+
+<h2>R2: Lezoni </h2>
+Ogni palestra organizza le sue attività giornaliere in lezioni dedicate a una specialità (es. aerobica).
+Ogni lezione occupa uno slot di un'ora a partire dalle 8 del mattino fino alle 21 di sera.
+E' possibile aggiungere una classe al calendario settimanale di una palestre usando il metodo 
+metodo <b>addClass(String, int, int, String)</b>. Il metodo riceve
+come parametro il nome della palestra in cui è tenuta la lezione, il giorno della settimana sotto forma di 
+un numero intero compreso tra 1 e 7, l'ora inizio sotto forma di un numero intero tra 8 e 20 e il numero massimo
+di partecipanti alla lezione.
+Nel caso in cui il nome della palestra sia errato il metodo deve generare un'eccezione.
+Nel caso in cui il giorno della settimana o l'orario non siano nel range indicato deve essere generata un'eccezione.
+Inoltre uno stesso slot in una palestra non può essere occupato da più di una lezione. Nel caso si cerchi di violare
+questo vincolo deve essere generata un'eccezione. 
+
+<h2>R3: Clienti </h2>
+<p>
+Per diventare clienti è necessario registrarsi sul sito fit e ottenere il codice cliente. 
+Un nuovo cliente viene aggiunto usando il metodo<b> addCutomer(String )</b>. Il metodo riceve come parametroi il nome del cliente rappresentato 
+tramite una stringa e ritorna il customerid rappresentato da  un numero intero progressivo a partire da 1 compreso.
+
+E' possibile trovare un cliente tramite il metodo <b>getCustomer(int)</b>. Il metodo riceve come parametro il customerid del cliente e ritorna
+un oggetto di classe Customer corrispondente al cliente. Nel caso in cui il customerid non sia presente nella lista dei clienti il metodo
+genera un'eccezione.
+
+
+<h2>R4: Prenotazioni </h2>
+
+I clienti possono iscriversi a una classe in una palestra tramite il metodo <b>placeReservation(int, String, int, int)</b>. 
+La prenotazione richiede di specificare il codice identificativo del cliente, il nome della palestra il giorno della
+settimana e lo slot in cui si tiene la classe. La prenotazione va a buon fine se: il codice identificativo del cliente è valido,
+il nome della palestra è valido, il giorno e lo slot sono validi, ci sono ancora posti liberi nella classe e il cliente non è
+già registrato nella classe. In tutti gli altri casi il metodo genera un'eccezione.
+
+
+<h2>R5: Statistiche </h2> 
+
+<p>
+Il metodo <b>mostActiveGymn()</b> fornisce il nome della palestra con il maggior numero di lezioni a disposizione.
+<p>
+Il metodo <b>totalLessonsPerGymn()</b> fornisce per ogni palestra il numero di lezioni erogate nella settimana.
+
+
+</body>
+</html>

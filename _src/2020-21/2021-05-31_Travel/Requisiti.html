@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+
+
+
+<title>TravelPortal</title>
+<link href=".css.css" rel="stylesheet" type="text/css">
+<style>
+@media print {  /* adjusted to print the html to a single-page pdf */
+body {
+	font-size: 10pt;
+}
+</style>
+</head>
+<body>
+
+<h1>TravelPortal</h1>
+Il programma simula un portale di viaggi. Tutte le classi si trovano nel package travelPortal. La classe principale è TravelPortal. La classe <b>TestApp</b> nel package <b>example</b> contiene un esempio; presenta i principali casi di test ma non tutti.
+Le eccezioni sono lanciate mediante la classe <b>TPException</b>; devono essere effettuati soltanto i controlli specificati e non tutti quelli possibili.
+<p> E’ possibile accedere alla <a href="https://oop.polito.it/api/">documentazione Java API</a>.
+
+
+<h2>Tipi di attività e agenzie di viaggi</h2>
+
+Il metodo <b>addActivityTypes (String... names)</b> definisce i nomi dei tipi delle attività trattate e dà la lista dei nomi ordinati alfabeticamente.
+<p>
+Il metodo <b>addTravelAgency (String name, String... actityTypes)</b> definisce un'agenzia di viaggi dato il nome e indica i nomi dei tipi di attività offerte; dà il numero dei tipi di attività offerte. Lancia un'eccezione se l'agenzia è già stata definita, uno o più tipi di attività sono indefiniti.
+<p>
+Il metodo <b>getAgenciesForActivityTypes ()</b> dà una mappa che ha come chiavi i nomi dei tipi di attività e come valore la lista delle agenzie che li trattano. Chiavi e valori sono ordinati alfabeticamente. I tipi di attività che non sono trattati da nessuna agenzia devono essere ignorati.
+
+
+<h2>Proposte di viaggi</h2>
+
+Il metodo <b>addProposal (String code, String agency, String destination, String period, int minNP, int maxNP, int price)</b> aggiunge una proposta di viaggio con i parametri seguenti: il codice univoco della proposta, il nome dell'agenzia che propone il viaggio, la destinazione, il periodo del viaggio, il n. minimo (minNP) e il n. massimo (maxNP) dei partecipanti, il prezzo del viaggio. Il periodo ha questo formato "m:i-f", dove m è il numero del mese, i è il numero del giorno di partenza e f è il numero del giorno di ritorno; l'esempio 8:10-20 indica un viaggio dal 10 al 20 di agosto. I giorni i e f sono nello stesso mese.
+Il metodo dà la durata del viaggio (differenza tra f e i) e lancia un'eccezione se il codice della proposta è già stato definito in una proposta precedente o se l'agenzia è indefinita.
+<p>
+
+Il metodo <b>addActivity (String code, String activityType, String description, int price)</b> aggiunge alla proposta indicata dal parametro code un'attività con i parametri seguenti: il tipo di attività, la descrizione e il prezzo. Lancia un'eccezione se l'agenzia che propone il viaggio non fornisce il tipo di attività indicato. Il metodo dà come risultato il totale dei prezzi delle attività aggiunte alla proposta.
+<p>
+
+Il metodo <b>getProposalPrice (String code)</b> dà il prezzo totale della proposta che comprende il prezzo del viaggio e i prezzi delle eventuali attività aggiunte alla proposta. Le attività non sono obbligatorie. Il metodo lancia un'eccezione se il codice non corrisponde ad alcuna proposta.
+<p>
+
+<h2>Partecipanti</h2>
+
+Il metodo <b>addParticipants (String code, String... names)</b> aggiunge i nomi dei partecipanti alla proposta indicata dal parametro code. Il parametro names porta i nomi dei richiedenti: un richiedente è accettato soltanto se non partecipa ad una proposta precedente che abbia in comune con quella corrente sia il mese sia uno o più giorni.
+Ad esempio, se il richiedente <em>Tizio</em> partecipa alla proposta <em>P1</em> che si svolge nel periodo <i>8:6-12</i>, la sua successiva richiesta per la proposta <em>P2</em> che si svolge nel periodo <i>8:10-10</i> è rifiutata perché c'è una sovrapposizione. I richiedenti accettati diventano i partecipanti alla proposta.
+Il metodo dà come risultato la lista dei nomi dei partecipanti nello stesso ordine con cui compaiono nel parametro names.
+Lancia un'eccezione se il numero dei partecipanti non è compreso nel range minNP-maxNP (estremi inclusi) stabilito nella proposta.
+<p>
+
+Il metodo <b>getIncome (String code)</b> dà il risultato economico della proposta indicata dal codice. Il risultato si ottiene moltiplicando il prezzo totale della proposta per il numero dei partecipanti.
+
+<h2>Valutazioni</h2>
+
+Il metodo <b>addRatings (String code, int... evaluations)</b> dà le valutazioni (valori interi) alla proposta indicata dal codice. Il numero delle valutazioni deve essere uguale al numero dei partecipanti alla proposta (altrimenti è sollevata un'eccezione); in questo modo è facile determinare gli autori delle valutazioni. Ad esempio la valutazione con indice j ha come autore il partecipante con indice j (nella lista dei partecipanti alla proposta).
+Il metodo dà per ogni partecipante il nome seguito da <i>":"</i> e dalla valutazione. Un esempio di risultato che si trova in TestApp è il seguente: <i>"pt2:10, pt4:12, pt6:14, pt8:16"</i>. I partecipanti (nome:valutazione) sono separati da <i>", "</i>.
+<p>
+
+Il metodo <b>getTotalRatingsForParticipants ()</b> dà per ogni partecipante la somma dei valori delle sue valutazioni. Le chiavi sono i nomi dei partecipanti e sono ordinate alfabeticamente. Sono considerati i partecipanti che hanno fornito almeno una valutazione.
+
+
+<h2>Statistiche</h2>
+
+Il metodo <b>incomeForActivityTypes() </b> dà per ogni tipo di attività la somma dei prezzi delle attività ad esso connesse. I tipi di attività senza attività connesse sono ignorati.
+Le chiavi sono i nomi dei tipi di attività e sono ordinate alfabeticamente.
+<p>
+
+Il metodo <b>participantsWithSameNofProposals ()</b> dà la lista ordinata dei nomi dei partecipanti che partecipano allo stesso numero di proposte. Le chiavi sono i numeri di proposte ordinati in senso crescente e le liste dei partecipanti sono ordinate alfabeticamente.
+<p>
+
+</body>
+</html>
